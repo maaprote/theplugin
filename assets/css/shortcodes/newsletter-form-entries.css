@@ -13,6 +13,13 @@
 .rtp-newsletter-entries__error, .rtp-newsletter-entries__loading {
   display: none;
 }
+.rtp-newsletter-entries__table {
+  width: 100%;
+}
+.rtp-newsletter-entries__table th, .rtp-newsletter-entries__table td {
+  padding: 10px;
+  text-align: left;
+}
 .rtp-newsletter-entries.is-loading .rtp-newsletter-entries__loading {
   display: block;
 }

@@ -19,6 +19,15 @@
 		display: none;
 	}
 
+	&__table {
+		width: 100%;
+
+		th, td {
+			padding: 10px;
+			text-align: left;
+		}
+	}
+
 	&.is-loading {
 		.rtp-newsletter-entries__loading {
 			display: block;

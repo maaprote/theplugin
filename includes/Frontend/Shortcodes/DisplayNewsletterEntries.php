@@ -110,11 +110,30 @@ class DisplayNewsletterEntries {
 		ob_start();
 		?>
 		
-		<?php foreach ( $entries as $entry ) : ?>
-			<div class="rtp-newsletter-entries__entry">
-				<?php echo esc_html( $entry->email ); ?>
-			</div>
-		<?php endforeach; ?>
+		<table class="rtp-newsletter-entries__table">
+			<thead>
+				<tr>
+					<th><?php echo esc_html__( 'Email', 'rt-theplugin' ); ?></th>
+					<th><?php echo esc_html__( 'First name', 'rt-theplugin' ); ?></th>
+					<th><?php echo esc_html__( 'Last name', 'rt-theplugin' ); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach ( $entries as $entry ) : ?>
+				<tr>
+					<td>
+						<?php echo esc_html( $entry->email ); ?>
+					</td>
+					<td>
+						<?php echo esc_html( $entry->first_name ); ?>
+					</td>
+					<td>
+						<?php echo esc_html( $entry->last_name ); ?>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
 
 		<?php
 		return ob_get_clean();
