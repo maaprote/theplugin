@@ -101,11 +101,7 @@ class DisplayNewsletterEntries {
 	 * @return string
 	 */
 	public function get_entries_output( $email = '' ) {
-		if ( ! $email ) {
-			$entries = DatabaseNewsletterFormService::get();
-		} else {
-			$entries = DatabaseNewsletterFormService::get_by_email( $email );
-		}
+		$entries = ! $email ? DatabaseNewsletterFormService::get() : DatabaseNewsletterFormService::get_by_email( $email );
 
 		if ( ! $entries ) {
 			return;
