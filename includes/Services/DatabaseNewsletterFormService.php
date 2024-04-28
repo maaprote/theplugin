@@ -19,11 +19,22 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 	/**
 	 * Insert data.
 	 * 
+	 * @param string $email
+	 * @param string $first_name
+	 * @param string $last_name
+	 * @return mixed
 	 */
 	public static function insert( $email, $first_name, $last_name ) {
 		global $wpdb;
 
 		$table_name = "{$wpdb->prefix}theplugin_subscribers";
+
+		// check if email already exists
+		$entries = self::email_exists( $email );
+
+		if ( ! empty( $entries ) ) {
+			return new \WP_Error( 'email_exists', __( 'Email already exists.', 'rt-theplugin' ) );
+		}
 
 		$wpdb->insert( 
 			$table_name, 
@@ -39,6 +50,7 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 	/**
 	 * Get data.
 	 * 
+	 * @return array
 	 */
 	public static function get() {
 		global $wpdb;
@@ -53,6 +65,8 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 	/**
 	 * Get by email.
 	 * 
+	 * @param string $email
+	 * @return array
 	 */
 	public static function get_by_email( $email ) {
 		global $wpdb;
@@ -69,8 +83,27 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 	}
 
 	/**
+	 * Check whether email already exists in the table.
+	 * 
+	 * @param string $email
+	 * @return bool
+	 */
+	public static function email_exists( $email ) {
+		global $wpdb;
+
+		$table_name = "{$wpdb->prefix}theplugin_subscribers";
+
+		$sql = $wpdb->prepare( "SELECT * FROM {$table_name} WHERE email = %s", $email );
+
+		$entries = $wpdb->get_results( $sql );
+
+		return ! empty( $entries );
+	}
+
+	/**
 	 * Maybe create table.
 	 * 
+	 * @return void
 	 */
 	public static function maybe_create_table() {
 		global $wpdb;

@@ -27,6 +27,7 @@ class OptionsPage {
 	/**
 	 * Add menu page.
 	 * 
+	 * @return void
 	 */
 	public function add_menu_page() {
 		add_menu_page(
@@ -43,6 +44,7 @@ class OptionsPage {
 	/**
 	 * Register settings.
 	 * 
+	 * @return void
 	 */
 	public function register_settings() {
 
@@ -84,24 +86,12 @@ class OptionsPage {
 				'default'           => '#212121',
 			)
 		);
-
-		// Fields padding.
-		register_setting(
-			'rt-theplugin',
-			'rt_newsletter_form_fields_padding',
-			array(
-				'type'              => 'number',
-				'description'       => __( 'Newsletter form fields padding', 'rt-theplugin' ),
-				'sanitize_callback' => 'sanitize_text_field',
-				'show_in_rest'      => true,
-				'default'           => 10,
-			)
-		);
 	}
 
 	/**
 	 * Render menu page.
 	 * 
+	 * @return void
 	 */
 	public function render_menu_page() {
 		echo '<div id="rt-theplugin-admin-page"></div>';

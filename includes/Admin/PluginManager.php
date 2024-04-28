@@ -33,6 +33,7 @@ class PluginManager {
 	/**
 	 * Activation hook.
 	 * 
+	 * @return void
 	 */
 	public function activate() {
 		DatabaseNewsletterFormService::maybe_create_table();
@@ -41,6 +42,7 @@ class PluginManager {
 	/**
 	 * Deactivation hook.
 	 * 
+	 * @return void
 	 */
 	public function deactivate() {}
 }

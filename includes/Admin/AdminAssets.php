@@ -25,6 +25,7 @@ class AdminAssets {
 	/**
 	 * Enqueue scripts.
 	 * 
+	 * @return void
 	 */
 	public function admin_enqueue_scripts() {
 		$current_screen = get_current_screen();

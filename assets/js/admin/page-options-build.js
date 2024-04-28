@@ -180,7 +180,6 @@ const OptionsPage = () => {
   const [firstName, setFirstName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [lastName, setLastName] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [primaryColor, setPrimaryColor] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('#FFF');
-  const [padding, setPadding] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10);
   const [isPrimaryColorPopoverOpen, setIsPrimaryColorPopoverOpen] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [popoverAnchor, setPopoverAnchor] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -192,7 +191,6 @@ const OptionsPage = () => {
         setFirstName(response.rt_newsletter_form_display_first_name);
         setLastName(response.rt_newsletter_form_display_last_name);
         setPrimaryColor(response.rt_newsletter_form_primary_color);
-        setPadding(response.rt_newsletter_form_fields_padding);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -208,8 +206,7 @@ const OptionsPage = () => {
     const data = {
       rt_newsletter_form_display_first_name: firstName,
       rt_newsletter_form_display_last_name: lastName,
-      rt_newsletter_form_primary_color: primaryColor,
-      rt_newsletter_form_fields_padding: padding
+      rt_newsletter_form_primary_color: primaryColor
     };
     const fetchData = async () => {
       try {
@@ -276,13 +273,7 @@ const OptionsPage = () => {
     onChange: setPrimaryColor,
     enableAlpha: true,
     defaultValue: "#FFF"
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Fields Padding', 'rt-theplugin'),
-    value: padding,
-    onChange: value => setPadding(value),
-    min: 0,
-    max: 50
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+  }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     variant: "primary",
     type: "submit",
     style: {

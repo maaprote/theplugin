@@ -24,6 +24,7 @@ use Rodrigo\ThePlugin\Admin\OptionsPage;
 use Rodrigo\ThePlugin\Frontend\MainAssets as FrontendAssets;
 use Rodrigo\ThePlugin\Frontend\Shortcodes\DisplayNewsletterEntries;
 use Rodrigo\ThePlugin\Frontend\Shortcodes\NewsletterForm;
+use Rodrigo\ThePlugin\Rest\CustomEndpoints;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -56,12 +57,19 @@ if ( ! class_exists( 'The_Plugin' ) ) {
 		private function includes() {
 			require __DIR__ . '/vendor/autoload.php';
 
-			new PluginManager();
-			new AdminAssets();
-			new OptionsPage();
-			new FrontendAssets();
-			new NewsletterForm();
-			new DisplayNewsletterEntries();
+			$classes = array(
+				PluginManager::class,
+				AdminAssets::class,
+				OptionsPage::class,
+				FrontendAssets::class,
+				NewsletterForm::class,
+				DisplayNewsletterEntries::class,
+				CustomEndpoints::class,
+			);
+
+			foreach ( $classes as $class ) {
+				new $class();
+			}
 		}
 	}
 

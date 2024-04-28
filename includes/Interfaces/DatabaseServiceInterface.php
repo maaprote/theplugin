@@ -17,24 +17,32 @@ interface DatabaseServiceInterface {
 	/**
 	 * Insert data.
 	 * 
+	 * @param string $email
+	 * @param string $first_name
+	 * @param string $last_name
+	 * @return mixed
 	 */
 	public static function insert( $email, $first_name, $last_name );
 
 	/**
 	 * Get data.
 	 * 
+	 * @return array
 	 */
 	public static function get();
 
 	/**
 	 * Get data by email.
 	 * 
+	 * @param string $email
+	 * @return object
 	 */
 	public static function get_by_email( $email );
 
 	/**
 	 * Maybe create table.
 	 * 
+	 * @return void
 	 */
 	public static function maybe_create_table();
 }

@@ -2,6 +2,9 @@
  * Newsletter Form Entries.
  *
  */
+.rtp-newsletter-entries {
+  padding: 25px;
+}
 .rtp-newsletter-entries__entries, .rtp-newsletter-entries__error, .rtp-newsletter-entries__loading {
   padding: 20px;
   border: 1px solid #dbdbdb;

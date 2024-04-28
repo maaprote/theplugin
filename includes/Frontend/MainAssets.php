@@ -25,6 +25,7 @@ class MainAssets {
 	/**
 	 * Enqueue scripts.
 	 * 
+	 * @return void
 	 */
 	public function enqueue_scripts() {
 		$min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';

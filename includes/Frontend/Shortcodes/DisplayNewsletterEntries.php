@@ -49,6 +49,7 @@ class DisplayNewsletterEntries {
 	/**
 	 * Enqueue scripts.
 	 * 
+	 * @return void
 	 */
 	public function enqueue_scripts() {
 		$min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
@@ -70,6 +71,7 @@ class DisplayNewsletterEntries {
 	/**
 	 * Ajax handler.
 	 * 
+	 * @return void
 	 */
 	public function ajax_handler() {
 
@@ -95,6 +97,7 @@ class DisplayNewsletterEntries {
 	/**
 	 * Get entries output.
 	 * 
+	 * @param string $email
 	 * @return string
 	 */
 	public function get_entries_output( $email = '' ) {
@@ -124,6 +127,8 @@ class DisplayNewsletterEntries {
 	/**
 	 * Render shortcode.
 	 * 
+	 * @param array $atts
+	 * @return string
 	 */
 	public function render( $atts ) {
 		ob_start();

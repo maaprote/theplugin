@@ -12,6 +12,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 ThePlugin.newsletterForm = {
   mainSelector: '.rtp-newsletter-form',
   submitSelector: '.rtp-newsletter-form__form-submit',
+  successSelector: '.rtp-newsletter-form__success',
   errorSelector: '.rtp-newsletter-form__error',
   init: function init() {
     var self = this;
@@ -43,6 +44,7 @@ ThePlugin.newsletterForm = {
             var newsletterFormWrapper = document.querySelector(self.mainSelector);
             var submitButton = document.querySelector(self.submitSelector);
             var initialSubmitText = document.querySelector(self.submitSelector).innerHTML;
+            var successWrapper = document.querySelector(self.successSelector);
             var errorWrapper = document.querySelector(self.errorSelector);
             submitButton.innerHTML = submitButton.getAttribute('data-loading');
             fetch(url, {
@@ -54,8 +56,9 @@ ThePlugin.newsletterForm = {
               if (response.success) {
                 form.reset();
                 newsletterFormWrapper.classList.remove('has-error');
-                window.location.reload();
+                newsletterFormWrapper.classList.add('has-success');
               } else {
+                newsletterFormWrapper.classList.remove('has-success');
                 newsletterFormWrapper.classList.add('has-error');
                 errorWrapper.innerHTML = response.data.message;
               }

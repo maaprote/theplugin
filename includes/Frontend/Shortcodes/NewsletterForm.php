@@ -49,6 +49,7 @@ class NewsletterForm {
 	/**
 	 * Enqueue scripts.
 	 * 
+	 * @return void
 	 */
 	public function enqueue_scripts() {
 		$min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
@@ -71,15 +72,14 @@ class NewsletterForm {
 	/**
 	 * Get options CSS.
 	 * 
+	 * @return string
 	 */
 	public function get_options_css() {
 		$primary_color  = get_option( 'rt_newsletter_form_primary_color', '#212121' );
-		$fields_padding = get_option( 'rt_newsletter_form_fields_padding', 10 );
 
 		$css = "
 			.rtp-newsletter-form {
 				--rtp-newsletter-form-primary-color: {$primary_color};
-				--rtp-newsletter-form-fields-padding: {$fields_padding}px;
 			}
 		";
 
@@ -90,6 +90,7 @@ class NewsletterForm {
 	/**
 	 * Ajax handler.
 	 * 
+	 * @return void
 	 */
 	public function ajax_handler() {
 
@@ -104,17 +105,22 @@ class NewsletterForm {
 		}
 
 		// Check first name.
-		if ( ! isset( $_POST['first_name'] ) || empty( $_POST['first_name'] ) ) {
+		$display_first_name = get_option( 'rt_newsletter_form_display_first_name', false );
+		if ( $display_first_name && ( ! isset( $_POST['first_name'] ) || empty( $_POST['first_name'] ) ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'First name is required.', 'rt-theplugin' ) ) );
 		}
 
 		// Check last name.
-		if ( ! isset( $_POST['last_name'] ) || empty( $_POST['last_name'] ) ) {
+		$display_last_name = get_option( 'rt_newsletter_form_display_last_name', false );
+		if ( $display_last_name && ( ! isset( $_POST['last_name'] ) || empty( $_POST['last_name'] ) ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Last name is required.', 'rt-theplugin' ) ) );
 		}
-
+		
 		// Insert subscriber.
-		DatabaseNewsletterFormService::insert( $_POST['email'], $_POST['first_name'], $_POST['last_name'] );
+		$insert = DatabaseNewsletterFormService::insert( $_POST['email'], $_POST['first_name'], $_POST['last_name'] );
+		if ( is_wp_error( $insert ) ) {
+			wp_send_json_error( array( 'message' => $insert->get_error_message() ) );
+		}
 
 		wp_send_json_success( array( 'message' => esc_html__( 'You have been subscribed.', 'rt-theplugin' ) ) );
 	
@@ -143,6 +149,10 @@ class NewsletterForm {
 				<button class="rtp-newsletter-form__form-submit" type="submit" data-loading="<?php echo esc_attr__( 'Loading...', 'rt-theplugin' ); ?>"><?php echo esc_html__( 'Subscribe', 'rt-theplugin' ) ?></button>
 			</form>
 			<div class="rtp-newsletter-form__error"></div>
+			<div class="rtp-newsletter-form__success">
+				<p><?php echo esc_html__( 'You\'be been subscribed with success!', 'rt-theplugin' ); ?></p>
+			</div>
+
 		</div>
 		<?php
 		return ob_get_clean();

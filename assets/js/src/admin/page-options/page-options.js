@@ -10,7 +10,6 @@ const OptionsPage = () => {
 	const [ firstName, setFirstName ] = useState( false );
 	const [ lastName, setLastName ] = useState( false );
 	const [ primaryColor, setPrimaryColor ] = useState( '#FFF' );
-	const [ padding, setPadding ] = useState( 10 );
 	const [ isPrimaryColorPopoverOpen, setIsPrimaryColorPopoverOpen ] = useState( false );
 	const [ popoverAnchor, setPopoverAnchor ] = useState();
 
@@ -22,7 +21,6 @@ const OptionsPage = () => {
 				setFirstName( response.rt_newsletter_form_display_first_name );
 				setLastName( response.rt_newsletter_form_display_last_name );
 				setPrimaryColor( response.rt_newsletter_form_primary_color );
-				setPadding( response.rt_newsletter_form_fields_padding );
 
 				setIsLoading( false );
 			} catch (error) {
@@ -43,7 +41,6 @@ const OptionsPage = () => {
 			rt_newsletter_form_display_first_name: firstName,
 			rt_newsletter_form_display_last_name: lastName,
 			rt_newsletter_form_primary_color: primaryColor,
-			rt_newsletter_form_fields_padding: padding
 		};
 
 		const fetchData = async () => {
@@ -125,13 +122,6 @@ const OptionsPage = () => {
 											}
 										</div>
 									</div>
-									<RangeControl
-										label={ __( 'Fields Padding', 'rt-theplugin' ) }
-										value={ padding }
-										onChange={ ( value ) => setPadding( value ) }
-										min={ 0 }
-										max={ 50 }
-									/>
 
 								</div>
 								<Button variant="primary" type="submit" style={ { marginTop: 15 } }>
