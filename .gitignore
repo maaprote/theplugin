@@ -1,0 +1,10 @@
+node_modules
+/test-results/
+/playwright-report/
+/test-results/
+/playwright/.cache/
+/vendor/
+**.code-workspace
+**.vscode
+.DS_Store
+.idea

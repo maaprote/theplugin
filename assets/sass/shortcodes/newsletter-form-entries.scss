@@ -1,0 +1,44 @@
+/**
+ * Newsletter Form Entries.
+ *
+ */
+
+.rtp-newsletter-entries {
+	&__entries,
+	&__error,
+	&__loading {
+		padding: 20px;
+		border: 1px solid #dbdbdb;
+		margin-top: 20px;
+	}
+
+	&__error,
+	&__loading {
+		display: none;
+	}
+
+	&.is-loading {
+		.rtp-newsletter-entries__loading {
+			display: block;
+			p {
+				margin: 0;
+			}
+		}
+
+		.rtp-newsletter-entries__error,
+		.rtp-newsletter-entries__entries {
+			display: none;
+		}
+	}
+
+	&.has-error {
+		.rtp-newsletter-entries__error {
+			display: block;
+			color: red;
+		}
+
+		.rtp-newsletter-entries__entries {
+			display: none;
+		}
+	}
+}

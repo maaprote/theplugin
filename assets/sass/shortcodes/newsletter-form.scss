@@ -1,0 +1,56 @@
+/**
+ * Newsletter Form.
+ *
+ * The !important flag here is needed because as the plugin 
+ * contains options for styling then we need to override the theme's styles. 
+ * This approach will ensure compatibility with a wide range of themes too.
+ */
+
+.rtp-newsletter-form {
+	&__form {
+		display: flex;
+		flex-direction: var( --rtp-newsletter-form-direction, row );
+		flex-wrap: nowrap;
+		gap: var( --rtp-newsletter-form-gap, 15px );
+	}
+
+	&__form-field {
+		flex: 1;
+		color: var( --rtp-newsletter-form-primary-color, #212121 ) !important;
+		background-color: #FFF !important;
+		border-style: solid !important;
+		border-width: 1px !important;
+		border-color: #777 !important;
+		padding: var( --rtp-newsletter-form-fields-padding, 10px ) !important;
+
+		&:focus {
+			border-color: var( --rtp-newsletter-form-primary-color, #212121 ) !important;
+		}
+	}
+
+	&__form-submit {
+		flex: 1;
+		color: #FFF !important;
+		background-color: #212121 !important;
+		border-style: solid !important;
+		border-width: 2px !important;
+		border-color: #212121 !important;
+		padding: #212121 !important;
+		cursor: pointer;
+		transition: ease opacity 300ms;
+	}
+
+	&__error {
+		display: none;
+		padding: 20px;
+		border: 1px solid #dbdbdb;
+		margin-top: 20px;
+	}
+
+	&.has-error {
+		.rtp-newsletter-form__error {
+			display: block;
+			color: red;
+		}
+	}
+}
