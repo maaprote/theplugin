@@ -64,6 +64,8 @@ const mmq          = require('gulp-merge-media-queries');
 const notify      = require('gulp-notify');
 const remember    = require('gulp-remember');
 const plumber     = require('gulp-plumber');
+const wpPot       = require('gulp-wp-pot');
+const sort        = require('gulp-sort');
 
 /**
  * Custom Error Handler.
@@ -197,6 +199,31 @@ const scriptTasks = scripts.map((script) => {
 	});
 
 	return taskName;
+});
+
+/**
+ * Task: `translate`.
+ */
+gulp.task('translate', () => {
+	return gulp
+		.src('./**/*.php')
+		.pipe(sort())
+		.pipe(
+			wpPot({
+				domain: 'rt-theplugin',
+				package: 'rt-theplugin',
+				bugReport: 'maaprote@gmail.com',
+				lastTranslator: 'Rodrigo Teixeira <maaprote@gmail.com>',
+				team: 'Rodrigo Teixeira'
+			})
+		)
+		.pipe(gulp.dest('./languages/rt-theplugin.pot'))
+		.pipe(
+			notify({
+				message: '\n\n✅  ===> Translate — completed!\n',
+				onLast: true
+			})
+		);
 });
 
 /**

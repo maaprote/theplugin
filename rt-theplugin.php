@@ -35,15 +35,19 @@ if ( ! class_exists( 'The_Plugin' ) ) {
 	final class The_Plugin {
 		
 		/**
-		 * Custom_Plugin constructor.
+		 * Constructor.
+		 * 
 		 */
 		public function __construct() {
 			$this->define_constants();
+			$this->load_textdomain();
 			$this->includes();
 		}
 
 		/**
 		 * Define constants.
+		 * 
+		 * @return void
 		 */
 		private function define_constants() {
 			define( 'RT_THEPLUGIN_PLUGIN_VERSION', '1.0.0' );
@@ -52,7 +56,18 @@ if ( ! class_exists( 'The_Plugin' ) ) {
 		}
 
 		/**
-		 * Include required core files.
+		 * Load plugin textdomain.
+		 * 
+		 * @return void
+		 */
+		public function load_textdomain() {
+			load_plugin_textdomain( 'rt-theplugin', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		}
+
+		/**
+		 * Includes.
+		 * 
+		 * @return void
 		 */
 		private function includes() {
 			require __DIR__ . '/vendor/autoload.php';

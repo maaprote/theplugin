@@ -22,12 +22,15 @@
         "gulp-sass": "^5.0.0",
         "gulp-uglify": "^3.0.0",
         "gulp-uglifycss": "^1.0.6",
+        "gulp-wp-pot": "^2.0.7",
+        "gulp-sort": "^2.0.0",
         "sass": "^1.69.5"
     },
     "scripts": {
         "start": "gulp",
         "build": "wp-scripts build",
         "start-pageopts": "wp-scripts start",
+        "translate": "gulp translate",
         "production": "gulp production && wp-scripts build"
     }
 }

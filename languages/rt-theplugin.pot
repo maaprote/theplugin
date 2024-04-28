@@ -1,0 +1,106 @@
+# Copyright (C) 2024 rt-theplugin
+# This file is distributed under the same license as the rt-theplugin package.
+msgid ""
+msgstr ""
+"Project-Id-Version: rt-theplugin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Rodrigo Teixeira\n"
+"Last-Translator: Rodrigo Teixeira <maaprote@gmail.com>\n"
+"POT-Creation-Date: 2024-04-28 23:44+0000\n"
+"Report-Msgid-Bugs-To: maaprote@gmail.com\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/Admin/OptionsPage.php:34, includes/Admin/OptionsPage.php:35
+msgid "The Plugin"
+msgstr ""
+
+#: includes/Admin/OptionsPage.php:57
+msgid "Display newsletter form first name"
+msgstr ""
+
+#: includes/Admin/OptionsPage.php:70
+msgid "Display newsletter form last name"
+msgstr ""
+
+#: includes/Admin/OptionsPage.php:83
+msgid "Newsletter form primary color"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:80, includes/Frontend/Shortcodes/NewsletterForm.php:99
+msgid "Invalid nonce."
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:86, includes/Frontend/Shortcodes/NewsletterForm.php:104, includes/Rest/CustomEndpoints.php:61
+msgid "Invalid email."
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:91
+msgid "Email not found."
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:116
+msgid "Email"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:117, includes/Frontend/Shortcodes/NewsletterForm.php:143
+msgid "First name"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:118, includes/Frontend/Shortcodes/NewsletterForm.php:146
+msgid "Last name"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:156
+msgid "Search by email"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:157
+msgid "Search"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/DisplayNewsletterEntries.php:165, includes/Frontend/Shortcodes/NewsletterForm.php:149
+msgid "Loading..."
+msgstr ""
+
+#: includes/Frontend/Shortcodes/NewsletterForm.php:110, includes/Rest/CustomEndpoints.php:66
+msgid "First name is required."
+msgstr ""
+
+#: includes/Frontend/Shortcodes/NewsletterForm.php:116, includes/Rest/CustomEndpoints.php:71
+msgid "Last name is required."
+msgstr ""
+
+#: includes/Frontend/Shortcodes/NewsletterForm.php:125
+msgid "You have been subscribed."
+msgstr ""
+
+#: includes/Frontend/Shortcodes/NewsletterForm.php:141
+msgid "Your email address"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/NewsletterForm.php:149
+msgid "Subscribe"
+msgstr ""
+
+#: includes/Frontend/Shortcodes/NewsletterForm.php:153
+msgid "You'be been subscribed with success!"
+msgstr ""
+
+#: includes/Rest/CustomEndpoints.php:57
+msgid "Email is required."
+msgstr ""
+
+#: includes/Rest/CustomEndpoints.php:79
+msgid "Email subscribed with success."
+msgstr ""
+
+#: includes/Services/DatabaseNewsletterFormService.php:36
+msgid "Email already exists."
+msgstr ""
