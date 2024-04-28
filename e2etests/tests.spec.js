@@ -6,6 +6,7 @@
 const { test, expect } = require('@playwright/test');
 
 // You must replace the URL with your local environment URL.
+// In a real scenario the URL here would be the URL of the environment where the tests will be executed. E.g staging or production.
 const url = 'http://theplugin.ddev.site/';
 
 test('The validation from search by email input is functional', async ({ page }) => {
