@@ -3,7 +3,12 @@ node_modules
 /playwright-report/
 /test-results/
 /playwright/.cache/
-/vendor/
+/vendor/bin/
+/vendor/dealerdirect/
+/vendor/phpcompatibility/
+/vendor/phpcsstandards/
+/vendor/squizlabs/
+/vendor/wp-coding-standards/
 **.code-workspace
 **.vscode
 .DS_Store
