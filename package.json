@@ -27,6 +27,7 @@
     "scripts": {
         "start": "gulp",
         "build": "wp-scripts build",
-        "start-pageopts": "wp-scripts start"
+        "start-pageopts": "wp-scripts start",
+        "production": "gulp production && wp-scripts build"
     }
 }
