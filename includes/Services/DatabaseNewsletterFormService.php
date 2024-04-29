@@ -117,14 +117,16 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 		$table_name = "{$wpdb->prefix}theplugin_subscribers";
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = "CREATE TABLE $table_name (
+		$sql = $wpdb->prepare( "CREATE TABLE %i (
 			id INT NOT NULL AUTO_INCREMENT,
 			time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 			email VARCHAR(100) NOT NULL,
 			first_name VARCHAR(50),
 			last_name VARCHAR(50),
 			PRIMARY KEY (id)
-		) $charset_collate;";
+		)", $table_name );
+
+		$sql .= $charset_collate;
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
