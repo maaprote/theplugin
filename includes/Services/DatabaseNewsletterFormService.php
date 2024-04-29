@@ -55,9 +55,11 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 	public static function get() {
 		global $wpdb;
 
-		$table_name = "{$wpdb->prefix}theplugin_subscribers";
+		$table_name = esc_sql( "{$wpdb->prefix}theplugin_subscribers" );
 
-		$entries = $wpdb->get_results( "SELECT * FROM {$table_name}" );
+		$sql = "SELECT * FROM {$table_name} ORDER BY time DESC LIMIT 20";
+
+		$entries = $wpdb->get_results( $sql );
 
 		return $entries;
 	}

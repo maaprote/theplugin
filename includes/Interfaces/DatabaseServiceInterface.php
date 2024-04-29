@@ -32,14 +32,6 @@ interface DatabaseServiceInterface {
 	public static function get();
 
 	/**
-	 * Get data by email.
-	 * 
-	 * @param string $email
-	 * @return object
-	 */
-	public static function get_by_email( $email );
-
-	/**
 	 * Maybe create table.
 	 * 
 	 * @return void
