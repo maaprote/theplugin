@@ -102,8 +102,8 @@ class DisplayNewsletterEntries {
 	 */
 	public function get_entries_output( $email = '' ) {
 		$entries = ! $email ? DatabaseNewsletterFormService::get() : DatabaseNewsletterFormService::get_by_email( $email );
-		$display_first_name = get_option( 'theplugin_newsletter_form_display_first_name', false );
-		$display_last_name = get_option( 'theplugin_newsletter_form_display_last_name', false );
+		$display_first_name = get_option( 'rt_newsletter_form_display_first_name', false );
+		$display_last_name = get_option( 'rt_newsletter_form_display_last_name', false );
 
 		if ( ! $entries ) {
 			return;
