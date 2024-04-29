@@ -76,7 +76,7 @@ class DisplayNewsletterEntries {
 	public function ajax_handler() {
 
 		// Check nonce.
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], $this::AJAX_NONCE ) ) {
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], $this::AJAX_NONCE ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Even though some user user do change the nonce input somehow, the nonce is still verified.
 			wp_send_json_error( array( 'message' => esc_html__( 'Invalid nonce.', 'rt-theplugin' ) ) );
 		}
 
@@ -182,5 +182,4 @@ class DisplayNewsletterEntries {
 		<?php
 		return ob_get_clean();
 	}
-
 }

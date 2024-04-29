@@ -84,7 +84,6 @@ class NewsletterForm {
 		";
 
 		return $css;
-	
 	}
 
 	/**
@@ -95,7 +94,7 @@ class NewsletterForm {
 	public function ajax_handler() {
 
 		// Check nonce.
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], $this::AJAX_NONCE ) ) {
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], $this::AJAX_NONCE ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Even though some user user do change the nonce input somehow, the nonce is still verified.
 			wp_send_json_error( array( 'message' => esc_html__( 'Invalid nonce.', 'rt-theplugin' ) ) );
 		}
 
@@ -117,13 +116,12 @@ class NewsletterForm {
 		}
 		
 		// Insert subscriber.
-		$insert = DatabaseNewsletterFormService::insert( $_POST['email'], $_POST['first_name'], $_POST['last_name'] );
+		$insert = DatabaseNewsletterFormService::insert( sanitize_email( $_POST['email'] ), sanitize_text_field( $_POST['first_name'] ), sanitize_text_field( $_POST['last_name'] ) );
 		if ( is_wp_error( $insert ) ) {
 			wp_send_json_error( array( 'message' => $insert->get_error_message() ) );
 		}
 
 		wp_send_json_success( array( 'message' => esc_html__( 'You have been subscribed.', 'rt-theplugin' ) ) );
-	
 	}
 
 	/**

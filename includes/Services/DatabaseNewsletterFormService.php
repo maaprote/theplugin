@@ -36,13 +36,17 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 			return new \WP_Error( 'email_exists', __( 'Email already exists.', 'rt-theplugin' ) );
 		}
 
-		$wpdb->insert( 
+		if ( ! isset( $_POST['email'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			return new \WP_Error( 'email_required', __( 'Email is required.', 'rt-theplugin' ) );
+		}
+
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 			$table_name, 
 			array( 
 				'time' => current_time( 'mysql' ),
-				'email' => sanitize_email( $_POST['email'] ),
-				'first_name' => sanitize_text_field( $_POST['first_name'] ),
-				'last_name' => sanitize_text_field( $_POST['last_name'] ),
+				'email' => sanitize_email( $_POST['email'] ), // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				'first_name' => isset( $_POST['first_name'] ) ? sanitize_text_field( $_POST['first_name'] ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				'last_name' => isset( $_POST['last_name'] ) ? sanitize_text_field( $_POST['last_name'] ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			) 
 		);
 	}
@@ -57,8 +61,9 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 
 		$table_name = "{$wpdb->prefix}theplugin_subscribers";
 
-		// No need to prepare() here.
-		$entries = $wpdb->get_results( "SELECT * FROM {$table_name}" );
+		$sql = $wpdb->prepare( "SELECT * FROM %i", $table_name );
+
+		$entries = $wpdb->get_results( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- false positive (leanr more here: https://github.com/WordPress/WordPress-Coding-Standards/issues/508)
 
 		return $entries;
 	}
@@ -76,9 +81,9 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 
 		$email = '%' . $wpdb->esc_like( $email ) . '%';
 
-		$sql = $wpdb->prepare( "SELECT * FROM {$table_name} WHERE email LIKE %s", $email );
+		$sql = $wpdb->prepare( "SELECT * FROM %i WHERE email LIKE %s", $table_name, $email ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
-		$entries = $wpdb->get_results( $sql );
+		$entries = $wpdb->get_results( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- false positive (leanr more here: https://github.com/WordPress/WordPress-Coding-Standards/issues/508)
 
 		return $entries;
 	}
@@ -94,9 +99,9 @@ class DatabaseNewsletterFormService implements DatabaseServiceInterface {
 
 		$table_name = "{$wpdb->prefix}theplugin_subscribers";
 
-		$sql = $wpdb->prepare( "SELECT * FROM {$table_name} WHERE email = %s", $email );
+		$sql = $wpdb->prepare( "SELECT * FROM %i WHERE email = %s", $table_name, $email );
 
-		$entries = $wpdb->get_results( $sql );
+		$entries = $wpdb->get_results( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- false positive (leanr more here: https://github.com/WordPress/WordPress-Coding-Standards/issues/508)
 
 		return ! empty( $entries );
 	}

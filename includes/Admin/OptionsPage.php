@@ -96,5 +96,4 @@ class OptionsPage {
 	public function render_menu_page() {
 		echo '<div id="rt-theplugin-admin-page"></div>';
 	}
-	
 }

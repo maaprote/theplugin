@@ -27,7 +27,6 @@ class PluginManager {
 
 		// Register deactivation hook.
 		register_deactivation_hook( RT_THEPLUGIN_PLUGIN_PATH . 'rt-theplugin.php', array( $this, 'deactivate' ) );
-
 	}
 
 	/**
