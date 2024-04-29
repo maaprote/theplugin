@@ -102,6 +102,8 @@ class DisplayNewsletterEntries {
 	 */
 	public function get_entries_output( $email = '' ) {
 		$entries = ! $email ? DatabaseNewsletterFormService::get() : DatabaseNewsletterFormService::get_by_email( $email );
+		$display_first_name = get_option( 'theplugin_newsletter_form_display_first_name', false );
+		$display_last_name = get_option( 'theplugin_newsletter_form_display_last_name', false );
 
 		if ( ! $entries ) {
 			return;
@@ -114,8 +116,12 @@ class DisplayNewsletterEntries {
 			<thead>
 				<tr>
 					<th><?php echo esc_html__( 'Email', 'rt-theplugin' ); ?></th>
+					<?php if ( $display_first_name ) : ?>
 					<th><?php echo esc_html__( 'First name', 'rt-theplugin' ); ?></th>
+					<?php endif; ?>
+					<?php if ( $display_last_name ) : ?>
 					<th><?php echo esc_html__( 'Last name', 'rt-theplugin' ); ?></th>
+					<?php endif; ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -124,12 +130,16 @@ class DisplayNewsletterEntries {
 					<td>
 						<?php echo esc_html( $entry->email ); ?>
 					</td>
+					<?php if ( $display_first_name ) : ?>
 					<td>
 						<?php echo esc_html( $entry->first_name ); ?>
 					</td>
+					<?php endif; ?>
+					<?php if ( $display_last_name ) : ?>
 					<td>
 						<?php echo esc_html( $entry->last_name ); ?>
 					</td>
+					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
@@ -148,7 +158,7 @@ class DisplayNewsletterEntries {
 	public function render( $atts ) {
 		ob_start();
 		$entries_output = $this->get_entries_output();
-		
+
 		?>
 		<div class="rtp-newsletter-entries">
 			<form class="rtp-newsletter-entries__form" action="" method="post">
