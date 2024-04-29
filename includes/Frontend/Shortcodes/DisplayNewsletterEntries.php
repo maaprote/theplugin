@@ -147,6 +147,8 @@ class DisplayNewsletterEntries {
 	 */
 	public function render( $atts ) {
 		ob_start();
+		$entries_output = $this->get_entries_output();
+		
 		?>
 		<div class="rtp-newsletter-entries">
 			<form class="rtp-newsletter-entries__form" action="" method="post">
@@ -157,9 +159,11 @@ class DisplayNewsletterEntries {
 					<button class="rtp-newsletter-entries__form-submit" type="submit"><?php echo esc_html__( 'Search', 'rt-theplugin' ) ?></button>
 				</div>
 			</form>
-			<div class="rtp-newsletter-entries__entries">
-				<?php echo wp_kses_post( $this->get_entries_output() ); ?>
-			</div>
+			<?php if ( ! empty( $entries_output ) ) : ?>
+				<div class="rtp-newsletter-entries__entries">
+					<?php echo wp_kses_post( $entries_output ); ?>
+				</div>
+			<?php endif; ?>
 			<div class="rtp-newsletter-entries__error"></div>
 			<div class="rtp-newsletter-entries__loading">
 				<p><?php echo esc_html__( 'Loading...', 'rt-theplugin' ); ?></p>
