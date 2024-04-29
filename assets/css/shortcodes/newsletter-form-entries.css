@@ -13,6 +13,20 @@
 .rtp-newsletter-entries__error, .rtp-newsletter-entries__loading {
   display: none;
 }
+.rtp-newsletter-entries__search-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+}
+.rtp-newsletter-entries__input {
+  padding: 10px;
+}
+.rtp-newsletter-entries__form-submit {
+  background-color: #212121;
+  color: #FFF;
+  padding: 10px 25px;
+}
 .rtp-newsletter-entries__table {
   width: 100%;
 }

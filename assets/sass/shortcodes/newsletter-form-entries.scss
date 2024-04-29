@@ -19,6 +19,21 @@
 		display: none;
 	}
 
+	&__search-filter {
+		display: flex;
+		gap: 15px;
+	}
+
+	&__input {
+		padding: 10px;
+	}
+
+	&__form-submit {
+		background-color: #212121;
+		color: #FFF;
+		padding: 10px 25px;
+	}
+
 	&__table {
 		width: 100%;
 
